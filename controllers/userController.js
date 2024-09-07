@@ -1,13 +1,14 @@
-const fs = require('fs');
-const pg = require('pg');
-const url = require('url');
+const fs = require("fs");
+const pg = require("pg");
+const url = require("url");
+require("dotenv").config({ path: "./config.env" });
 
 const config = {
-  user: 'avnadmin',
+  user: "avnadmin",
   password: process.env.DB_PASSWORD,
-  host: 'natrous-sarazedan287-cca7.e.aivencloud.com',
+  host: "natrous-sarazedan287-cca7.e.aivencloud.com",
   port: 20328,
-  database: 'defaultdb',
+  database: "defaultdb",
   ssl: {
     rejectUnauthorized: true,
     ca: `-----BEGIN CERTIFICATE-----
@@ -34,21 +35,21 @@ BSXl2TRFv4nhYwAFic+WF7yNb1lR2fAhQLFHn5/eWLQm6/g2HQD8f37OLh/j/YqJ
 ZjMHsKTussZwrBwAc5khWMge0m2WSXD7PPL3pzZfUsxVpuRztvsY26MVGtuFvDzo
 d79PDGzb8necByh4Ol4bWC03rg85EKrZb3etZLBLGHEB3to5D8qoM9+m2AhuCT2f
 x65PSZOYq8LXhh7aa20Mi0kqJEQ4bgtUozQ0ecKNfSPGaWvjfA==
------END CERTIFICATE-----`
-  }
+-----END CERTIFICATE-----`,
+  },
 };
 
 const client = new pg.Client(config);
 exports.getAllUsers = (req, res) => {
   client.connect(function(err) {
     if (err) throw err;
-    client.query('SELECT VERSION()', [], function(err, result) {
+    client.query("SELECT VERSION()", [], function(err, result) {
       if (err) throw err;
 
       console.log(result.rows[0].version);
       res.status(200).json({
-        status: 'success',
-        message: result.rows[0].version
+        status: "success",
+        message: result.rows[0].version,
       });
       client.end(function(err) {
         if (err) throw err;
@@ -58,25 +59,25 @@ exports.getAllUsers = (req, res) => {
 };
 exports.getUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!'
+    status: "error",
+    message: "This route is not yet defined!",
   });
 };
 exports.createUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!'
+    status: "error",
+    message: "This route is not yet defined!",
   });
 };
 exports.updateUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!'
+    status: "error",
+    message: "This route is not yet defined!",
   });
 };
 exports.deleteUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!'
+    status: "error",
+    message: "This route is not yet defined!",
   });
 };
